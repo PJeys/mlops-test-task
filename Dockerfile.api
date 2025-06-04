@@ -1,0 +1,31 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy only necessary application files
+# For the API, we need:
+# - The src/ directory (for api, models, data, utils modules)
+# - The artifacts/models directory (for the trained model and preprocessor state)
+# - The data/ directory (for sample data, though not directly used by API, preprocessor might indirectly try to access config for path)
+COPY src/ /app/src/
+COPY data/ /app/data/ # Copy sample data (used by training and potentially tests, not strictly for API)
+COPY artifacts/models/ /app/artifacts/models/ # Critical: copy trained model and preprocessor state
+
+# Expose the port that Uvicorn will run on
+EXPOSE 8000
+
+# Command to run the FastAPI application using Uvicorn
+# The config path should be relative to WORKDIR
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

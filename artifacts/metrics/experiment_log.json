@@ -1,0 +1,64 @@
+[
+    {
+        "run_timestamp": "20250604_190611",
+        "config_path": "/home/misha/Development/sevenpro-test-task/mlops-assignment/src/config/config.yaml",
+        "model_path": "/home/misha/Development/sevenpro-test-task/mlops-assignment/artifacts/models/randomforest_model_20250604_190611.joblib",
+        "metrics": {
+            "train_accuracy": 0.9460107542508356,
+            "val_accuracy": 0.9370822435338564,
+            "train_f1_macro": 0.9426853274594756,
+            "val_f1_macro": 0.9316965521462216,
+            "val_confusion_matrix": [
+                [
+                    3600,
+                    43,
+                    5
+                ],
+                [
+                    267,
+                    1996,
+                    27
+                ],
+                [
+                    14,
+                    77,
+                    853
+                ]
+            ],
+            "feature_importances": {
+                "temperature_sensor_std": 0.17573134130715098,
+                "temperature_sensor_mean": 0.1484001274269214,
+                "temperature_sensor_min": 0.09877034750130083,
+                "temperature_sensor_range": 0.08757511855058571,
+                "ihs_to_gw_transmission_strength_mean_by_sensor": 0.08083935679667771,
+                "ihs_to_gw_transmission_strength_deviation_from_sensor_mean": 0.06698569996741409,
+                "ihs_to_gw_transmission_strength_std_by_sensor": 0.06629694334735318,
+                "temperature_gateway_std": 0.05758872703200462,
+                "temperature_gateway_mean": 0.057030676572843324,
+                "temperature_gateway_max": 0.0439412718993637,
+                "temperature_gateway_range": 0.039788893737990515,
+                "temperature_gateway_min": 0.030409065943475703,
+                "temperature_sensor_max": 0.028748273441701076,
+                "ihs_to_gw_transmission_strength_high_signal": 0.017894156475217204
+            }
+        },
+        "data_source_path": "/home/misha/Development/sevenpro-test-task/mlops-assignment/data/colony_size.csv",
+        "features_used": [
+            "temperature_sensor_mean",
+            "temperature_sensor_std",
+            "temperature_sensor_min",
+            "temperature_sensor_max",
+            "temperature_sensor_range",
+            "temperature_gateway_mean",
+            "temperature_gateway_std",
+            "temperature_gateway_min",
+            "temperature_gateway_max",
+            "temperature_gateway_range",
+            "ihs_to_gw_transmission_strength_high_signal",
+            "ihs_to_gw_transmission_strength_mean_by_sensor",
+            "ihs_to_gw_transmission_strength_std_by_sensor",
+            "ihs_to_gw_transmission_strength_deviation_from_sensor_mean"
+        ],
+        "preprocessor_state_path": "/home/misha/Development/sevenpro-test-task/mlops-assignment/artifacts/models/preprocessor_state.json"
+    }
+]

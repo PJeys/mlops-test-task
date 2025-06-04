@@ -1,0 +1,52 @@
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Python virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python bytecode and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE and OS specific files
+.vscode/
+.idea/
+*.DS_Store
+*.suo
+*.user
+*.sln
+*.userosprefs
+
+# Test artifacts & reports
+htmlcov/
+.pytest_cache/
+tests/test_artifacts/ # If tests create local artifacts not using tmp_path
+
+# Build artifacts from setuptools/wheel
+dist/
+build/
+*.egg-info/
+
+# Local instance artifacts (usually mounted as a volume to persist outside container)
+# artifacts/  # Comment out if you want to be able to COPY it in, but mounting is typical.
+
+# Documentation and Makefiles (not needed in the runtime image)
+*.md
+Makefile
+Dockerfile # The Dockerfile itself
+# legacy_code/ # Not needed in the final image
+
+# Specific files
+# .env # Environment variable files
+
+# Coverage files
+.coverage
+coverage.xml

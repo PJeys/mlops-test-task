@@ -1,0 +1,56 @@
+data:
+  sources:
+    - type: csv
+      path: data/colony_size.csv # Path relative to project root
+  target_column: "size"
+  validation:
+    check_nulls: true # If true, logs warning for columns with nulls
+    required_columns:
+      - "sensor_id"
+      - "timestamp"
+      - "temperature_sensor"
+      - "temperature_gateway"
+      # - "ihs_to_gw_transmission_strength" # Making this optional as per legacy code check
+      - "size" # Target
+    sensor_ranges: # For raw data validation, logs warning if values are outside these ranges
+      temperature_sensor: [0, 60]  # Example: 0 to 60 degrees Celsius
+      temperature_gateway: [0, 60]
+      ihs_to_gw_transmission_strength: [-150, 50] # Example dBm range
+
+preprocessing:
+  fillna_strategy: "mean" # Options: "mean", "median". Applied to numeric cols. Non-numeric use mode.
+  # Columns used as base for temperature feature engineering
+  temp_sensors_cols: ["temperature_sensor", "temperature_gateway"] # These will be filled if NA before use
+
+  feature_engineering:
+    base_temp_cols: ["temperature_sensor", "temperature_gateway"]
+    transmission_col: "ihs_to_gw_transmission_strength" # If present, used for transmission features
+
+  # Outlier removal based on quantiles of specified engineered features (legacy: temperature_sensor_mean)
+  # Rows outside these quantile ranges will be removed during fit_transform.
+  # During transform, values will be clipped to these learned bounds.
+  outlier_quantiles:
+    temperature_sensor_mean: [0.01, 0.99] # Remove bottom 1% and top 1% for this feature
+    # temperature_gateway_mean: [0.01, 0.99] # Example if needed
+
+model:
+  type: RandomForestClassifier
+  hyperparameters:
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42
+    min_samples_split: 5  # From legacy
+    min_samples_leaf: 2   # From legacy
+    # n_jobs: -1 # Can be added for parallelism
+  save_path: "artifacts/models" # Base directory for saving models and preprocessor state
+  version_strategy: "timestamp" # Currently only "timestamp" is implemented
+
+training:
+  test_size: 0.2 # Proportion of data for internal validation set in model.fit()
+  stratify_by_target: true # Whether to stratify train/validation split by target variable
+  metrics_to_log: ['accuracy', 'f1_macro', 'confusion_matrix']
+  experiment_tracking_file: "artifacts/metrics/experiment_log.json"
+  metrics_file_path: "artifacts/metrics/latest_metrics.json" # For latest training run's metrics
+
+evaluation: # Configuration for the standalone evaluate.py script
+  metrics_path: "artifacts/metrics" # Base directory for saving evaluation metrics
