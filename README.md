@@ -140,7 +140,7 @@ beehero-mlops-assignment/
 
 ### Containerization
 - **`Dockerfile`:**
-    - Uses `python:3.9-slim` as the base image.
+    - Uses `python:3.11-slim` as the base image.
     - Sets up the working directory and environment variables.
     - Copies `requirements.txt` and installs dependencies.
     - Copies application source code (`src/`, `data/`, `train_pipeline.py`).
@@ -198,18 +198,6 @@ beehero-mlops-assignment/
     ```bash
     make run-docker
     ```
-    To use a custom config file with Docker, ensure the config is accessible inside the container (e.g., by copying it in the `Dockerfile` or mounting it) and then run:
-    ```bash
-    # Example: if custom_config.yaml is at project_root/my_custom_config.yaml
-    # And you want it to appear at /app/my_custom_config.yaml in container
-    # docker run --rm \
-    #   -v "$(pwd)/artifacts:/app/artifacts" \
-    #   -v "$(pwd)/my_custom_config.yaml:/app/my_custom_config.yaml" \
-    #   beehero-ml-pipeline:latest \
-    #   python train_pipeline.py --config-path my_custom_config.yaml
-    # The Makefile `run-docker-custom` simplifies this if config is within `src/config` in image.
-    ```
-
       
 ### How to Run Inference API Endpoint
 
