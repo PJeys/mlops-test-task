@@ -121,7 +121,7 @@ endif
 build-api-docker: Dockerfile.api requirements.txt src artifacts/models
 	@echo "Building API Docker image $(API_DOCKER_IMAGE_NAME):$(API_DOCKER_TAG)..."
 	docker build -f Dockerfile.api -t $(API_DOCKER_IMAGE_NAME):$(API_DOCKER_TAG) .
- 	@echo "API Docker image built."
+	@echo "API Docker image built."
 
 run-api-docker: build-api-docker
 	@echo "Running FastAPI application inside Docker container..."
