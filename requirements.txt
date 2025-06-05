@@ -2,6 +2,7 @@ annotated-types==0.7.0
 anyio==4.9.0
 black==25.1.0
 click==8.2.1
+coverage==7.8.2
 fastapi==0.115.12
 flake8==7.2.0
 h11==0.16.0
@@ -22,6 +23,7 @@ pydantic_core==2.33.2
 pyflakes==3.3.2
 Pygments==2.19.1
 pytest==8.4.0
+pytest-cov==6.1.1
 python-dateutil==2.9.0.post0
 pytz==2025.2
 PyYAML==6.0.2
