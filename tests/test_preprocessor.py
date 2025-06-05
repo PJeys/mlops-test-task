@@ -37,7 +37,7 @@ def test_fillna_numeric(base_config: dict, small_test_df: pd.DataFrame):
 
     assert not df_filled["temperature_sensor"].isnull().any()
     assert not df_filled["temperature_gateway"].isnull().any()
-    expected_mean_temp_sensor = small_test_df['temperature_sensor'].mean()
+    expected_mean_temp_sensor = small_test_df["temperature_sensor"].mean()
     assert df_filled.loc[3, "temperature_sensor"] == pytest.approx(
         expected_mean_temp_sensor
     )
@@ -136,6 +136,7 @@ def test_fit_transform_produces_output(base_config: dict, sample_data_df: pd.Dat
     )  # Target should be separated
     assert len(preprocessor._fit_params) > 0, "Fit parameters should be populated"
     assert len(preprocessor.base_features) > 0, "Base features list should be populated"
+
 
 def test_preprocessor_handles_missing_cols_in_config(
     base_config: dict, sample_data_df: pd.DataFrame

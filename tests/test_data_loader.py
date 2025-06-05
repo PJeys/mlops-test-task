@@ -39,7 +39,9 @@ def test_data_loader_validation_required_cols_fail(
         columns=["sensor_id"]
     )  # sensor_id is required in base_config
     loader = DataLoader(config=base_config)
-    with pytest.raises(ValueError, match=r"DataFrame is missing required columns: \['sensor_id'\]"):
+    with pytest.raises(
+        ValueError, match=r"DataFrame is missing required columns: \['sensor_id'\]"
+    ):
         loader._validate_data(faulty_df)
 
 
