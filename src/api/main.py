@@ -14,7 +14,11 @@ from src.models.colony_classifier import ColonyStrengthClassifier  # noqa: E402
 from src.data.preprocessor import Preprocessor  # noqa: E402
 from src.utils.logger import get_logger  # noqa: E402
 from src.utils.utils import load_config, load_json  # noqa: E402
-from src.api.schemas import SensorDataInput, PredictionResponse, HealthCheckResponse  # noqa: E402
+from src.api.schemas import (  # noqa: E402
+    SensorDataInput,
+    PredictionResponse,
+    HealthCheckResponse,
+)
 
 logger = get_logger("api")
 
