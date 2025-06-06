@@ -156,11 +156,11 @@ beehero-mlops-assignment/
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/PJeys/mlops-test-task
-    cd beehero-mlops-assignment
+    cd mlops-test-task
     ```
 
 2.  **Create a virtual environment and install dependencies:**
-    (Requires Python 3.9+)
+    (Requires Python 3.11+)
     ```bash
     make install
     ```
